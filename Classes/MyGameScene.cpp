@@ -1,6 +1,6 @@
 ﻿#include "MyGameScene.h"
 #include "MainScene.h"
-#include "Hero.h"
+#include "Globle.h"
 USING_NS_CC;
 
 Scene* MyGame::createScene()
@@ -17,7 +17,6 @@ Scene* MyGame::createScene()
 	// return the scene
 	return scene;
 }
-
 // on "init" you need to initialize your instance
 bool MyGame::init()
 {
@@ -37,8 +36,8 @@ bool MyGame::init()
 
 	// add a "close" icon to exit the progress. it's an autorelease object
 	auto closeItem = MenuItemImage::create(
-		"CloseNormal.png",
-		"CloseSelected.png",
+		"back.png",
+		"back.png",
 		CC_CALLBACK_1(MyGame::menuCloseCallback, this));
 
 	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width / 2,
@@ -54,18 +53,32 @@ bool MyGame::init()
 
 	gameView = Layer::create();
 	//瓦片地图
-	_tileMap = TMXTiledMap::create("map/maze01.tmx");
+	char* mapname;
+	switch (lerver)
+	{
+	case first:
+		mapname = "map/maze01.tmx";
+		break;
+	case secondd:
+		mapname = "map/maze02.tmx";
+		break;
+	case third:
+		mapname = "map/maze03.tmx";
+		break;
+	case forth:
+		mapname = "map/maze04.tmx";
+		break;
+	default:
+		mapname = "map/maze01.tmx";
+		break;
+	}
+	_tileMap = TMXTiledMap::create(mapname);
 	gameView->addChild(_tileMap, 0, 100);
 	TMXObjectGroup* group = _tileMap->getObjectGroup("objects");
 	ValueMap spawnPoint = group->getObject("ninja");
 
 	float x = spawnPoint["x"].asFloat();
 	float y = spawnPoint["y"].asFloat();
-
-	/*_player = Sprite::create("ninja.png");
-	_player->setPosition(Vec2(x, y));
-	gameView->addChild(_player, 2, 200);
-	this->addChild(gameView, 0);*/
 
 	hero = Hero::create();
 	hero->InitHeroSprite("run1.png");
@@ -98,19 +111,19 @@ void MyGame::update(float delta)
 	{
 	case 1:
 		pos.x += dis;
-		hero->SetAnnimation("run.plist", "run.png", "run", 2, false);
+		hero->SetAnnimation("run.plist", "run.png", "run", 4, false);
 		break;
 	case 2:
 		pos.y += dis;
-		hero->SetAnnimation("run.plist", "run.png", "run", 2, false);
+		hero->SetAnnimation("run.plist", "run.png", "run", 4, false);
 		break;
 	case 3:
 		pos.x -= dis;
-		hero->SetAnnimation("run.plist", "run.png", "run", 2, false);
+		hero->SetAnnimation("run.plist", "run.png", "run", 4, false);
 		break;
 	case 4:
 		pos.y -= dis;
-		hero->SetAnnimation("run.plist", "run.png", "run", 2, false);
+		hero->SetAnnimation("run.plist", "run.png", "run", 4, false);
 		break;
 	default:
 		hero->StopAnimation();
@@ -330,4 +343,3 @@ void MyGame::menuCloseCallback(Ref* pSender)
 	*/
 
 }
-

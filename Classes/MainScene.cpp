@@ -37,8 +37,8 @@ bool Main::init()
 
 	// add a "close" icon to exit the progress. it's an autorelease object
 	auto closeItem = MenuItemImage::create(
-		"CloseNormal.png",
-		"CloseSelected.png",
+		"back.png",
+		"back.png",
 		CC_CALLBACK_1(Main::menuCloseCallback, this));
 
 	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width / 2,
@@ -55,20 +55,20 @@ bool Main::init()
 	bg->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2));
 	addChild(bg);
 	//开始精灵
-	auto startSpriteNormal = Sprite::create("start-up.png");
-	auto startSpriteSelected = Sprite::create("start-down.png");
+	auto startSpriteNormal = Sprite::create("start.png");
+	auto startSpriteSelected = Sprite::create("start.png");
 	auto startMenuItem = MenuItemSprite::create(startSpriteNormal, startSpriteSelected, CC_CALLBACK_1(Main::menuItemStartCallback, this));
-	startMenuItem->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height * 2 / 3));
+	startMenuItem->setPosition(Vec2(origin.x + visibleSize.width *3/ 4, origin.y + visibleSize.height * 5 / 8));
 	//设置图片菜单
-	auto  * settingMenuItem = MenuItemImage::create("setting-up.png", "setting-down.png", CC_CALLBACK_1(Main::menuItemSettingCallback, this));
-	settingMenuItem->setPosition(Vec2(startMenuItem->getPositionX(), startMenuItem->getPositionY() - 50));
+	auto  * settingMenuItem = MenuItemImage::create("setting.png", "setting.png", CC_CALLBACK_1(Main::menuItemSettingCallback, this));
+	settingMenuItem->setPosition(Vec2(startMenuItem->getPositionX(), visibleSize.height*2/4));
 	//帮助图片菜单
-	auto *helpMenuItem = MenuItemImage::create("help-up.png", "help-down.png", CC_CALLBACK_1(Main::menuItemHelpCallback, this));
-	helpMenuItem->setPosition(Vec2(startMenuItem->getPositionX(), startMenuItem->getPositionY() - 100));
+	auto *helpMenuItem = MenuItemImage::create("help.png", "help.png", CC_CALLBACK_1(Main::menuItemHelpCallback, this));
+	helpMenuItem->setPosition(Vec2(startMenuItem->getPositionX(), visibleSize.height*1/4));
 	Menu * mu = Menu::create(startMenuItem, settingMenuItem, helpMenuItem, NULL);
 	mu->setPosition(Vec2::ZERO);
 	this->addChild(mu);
-
+	
 	return true;
 }
 
@@ -85,7 +85,7 @@ void Main::menuItemStartCallback(Ref *pSender)
 {
 	MenuItem * item = (MenuItem *)pSender;
 	log("Touch start %p", item);
-	auto sc = MyGame::createScene();
+	auto sc = Choose::createScene();
 	//Director.getInstance()->replaceScene(sc);
 	auto reScene = TransitionRotoZoom::create(1.0f, sc);
 	Director::getInstance()->pushScene(reScene);

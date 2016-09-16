@@ -36,8 +36,8 @@ bool Setting::init()
 
 	// add a "close" icon to exit the progress. it's an autorelease object
 	auto closeItem = MenuItemImage::create(
-		"CloseNormal.png",
-		"CloseSelected.png",
+		"back.png",
+		"back.png",
 		CC_CALLBACK_1(Setting::menuCloseCallback, this));
 
 	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width / 2,
@@ -50,25 +50,25 @@ bool Setting::init()
 
 	/////////////////////////////
 	// 3. add your codes below...
-	auto *bg = Sprite::create("hellobg.png");
+	auto *bg = Sprite::create("settingbg.png");
 	bg->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2));
 	addChild(bg);
 
 	//音效
-	auto soundOnMenuItem = MenuItemImage::create("on.png", "on.png");
+	/*auto soundOnMenuItem = MenuItemImage::create("on.png", "on.png");
 	auto soundOffMenuItem = MenuItemImage::create("off.png", "off.png");
 	auto soundToggleMenuItem = MenuItemToggle::createWithCallback(CC_CALLBACK_1(Setting::menuSoundToggleCallback, this), soundOnMenuItem, soundOffMenuItem, NULL);
 	auto center = Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2);
-	soundToggleMenuItem->setPosition(center.x, center.y + 50);
+	soundToggleMenuItem->setPosition(center.x, visibleSize.height*4);*/
 	//音乐
 	auto musicOnMenuItem = MenuItemImage::create("on.png", "on.png");
 	auto musicOffMenuItem = MenuItemImage::create("off.png", "off.png");
 	auto musicToggleMenuItem = MenuItemToggle::createWithCallback(CC_CALLBACK_1(Setting::menuMusicToggleCallback, this), musicOnMenuItem, musicOffMenuItem, NULL);
-	musicToggleMenuItem->setPosition(center.x, center.y);
+	musicToggleMenuItem->setPosition(visibleSize.width/2, visibleSize.height/2);
 	//OK按钮
-	auto okMenuItem = MenuItemImage::create("ok-down.png", "ok-up.png", CC_CALLBACK_1(Setting::menuOkCallback, this));
-	okMenuItem->setPosition(center.x, center.y - 50);
-	Menu * mn = Menu::create(soundToggleMenuItem, musicToggleMenuItem, okMenuItem, NULL);
+	auto okMenuItem = MenuItemImage::create("ok.png", "ok.png", CC_CALLBACK_1(Setting::menuOkCallback, this));
+	okMenuItem->setPosition(visibleSize.width / 2, visibleSize.height / 3);
+	Menu * mn = Menu::create(musicToggleMenuItem, okMenuItem, NULL);
 	mn->setPosition(Vec2::ZERO);
 	addChild(mn);
 	return true;
@@ -76,11 +76,7 @@ bool Setting::init()
 
 void Setting::menuCloseCallback(Ref* pSender)
 {
-	Director::getInstance()->end();
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	exit(0);
-#endif
+	Director::getInstance()->popScene();
 }
 
 void Setting::menuSoundToggleCallback(cocos2d::Ref * pSender)
@@ -89,6 +85,7 @@ void Setting::menuSoundToggleCallback(cocos2d::Ref * pSender)
 
 void Setting::menuMusicToggleCallback(cocos2d::Ref * pSender)
 {
+
 }
 
 void Setting::menuOkCallback(cocos2d::Ref * pSender)

@@ -28,38 +28,40 @@ bool Hello::init()
     }
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
-
-    // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(Hello::menuCloseCallback, this));
-    
-	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
-                                origin.y + closeItem->getContentSize().height/2));
-
-    // create menu, it's an autorelease object
-    auto menu = Menu::create(closeItem, NULL);
-    menu->setPosition(Vec2::ZERO);
-    this->addChild(menu, 1);
-
+    origin = Director::getInstance()->getVisibleOrigin();
     /////////////////////////////
     // 3. add your codes below...
 
     // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("hellobg.png");
+    auto sprite = Sprite::create("hello.png");
 
     // position the sprite on the center of the screen
     sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
-    
+
+	displayQR();
+    //2s后切换进入主场景
+	scheduleOnce(schedule_selector(Hello::nextScene), 2.0f);
+    return true;
+}
+
+void Hello::menuCloseCallback(Ref* pSender)
+{
+    Director::getInstance()->end();
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    exit(0);
+#endif
+}
+void Hello::nextScene(float dt)
+{
+	auto mainScene = Main::createScene();
+	Director::getInstance()->replaceScene(mainScene);
+}
+void Hello::displayQR()
+{
 	auto label = Sprite::create("l1.png");
 	label->setPosition(Vec2(origin.x + label->getContentSize().width / 2, origin.y + label->getContentSize().height / 2));
 	this->addChild(label);
@@ -85,20 +87,4 @@ bool Hello::init()
 	//将动画包装成一个动作
 	Animate *animate = Animate::create(animation);
 	label->runAction(animate);
-	scheduleOnce(schedule_selector(Hello::nextScene), 2.0f);
-    return true;
-}
-
-void Hello::menuCloseCallback(Ref* pSender)
-{
-    Director::getInstance()->end();
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
-}
-void Hello::nextScene(float dt)
-{
-	auto mainScene = Main::createScene();
-	Director::getInstance()->replaceScene(mainScene);
 }

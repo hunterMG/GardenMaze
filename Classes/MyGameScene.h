@@ -5,7 +5,6 @@
 #include "SimpleAudioEngine.h"
 #include "HRocker.h"
 #include "Hero.h"
-
 class MyGame : public cocos2d::Layer
 {
 	Layer *gameView;//将_player和_tileMap添加到这一个节点中，方便滚动地图时同时改变位置，同时摇杆位置不动
@@ -29,12 +28,8 @@ public:
 
 	void menuCloseCallback(Ref * pSender);
 
-	// a selector callback
-
-
 	// implement the "static create()" method manually
 	CREATE_FUNC(MyGame);
 };
 
 #endif // __MYGAME_SCENE_H__
-

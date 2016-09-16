@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include "MyGameScene.h"
-
+#include "ChooseScene.h"
 typedef enum {
 	PLACE_TAG = 102,
 	FLIPX_TAG,

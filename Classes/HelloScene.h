@@ -19,6 +19,9 @@ public:
     CREATE_FUNC(Hello);
 
 	void nextScene(float dt);
+	//展示齐软图标
+	void displayQR();
+	Vec2 origin;
 };
 
 #endif // __HELLO_SCENE_H__

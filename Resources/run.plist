@@ -9,7 +9,22 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-1,0}</string>
+                <string>{-6,-5}</string>
+                <key>spriteSize</key>
+                <string>{42,54}</string>
+                <key>spriteSourceSize</key>
+                <string>{64,64}</string>
+                <key>textureRect</key>
+                <string>{{113,1},{42,54}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>run2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-3,-4}</string>
                 <key>spriteSize</key>
                 <string>{36,56}</string>
                 <key>spriteSourceSize</key>
@@ -19,18 +34,33 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>run2.png</key>
+            <key>run3.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{-3,-5}</string>
+                <string>{-3,-4}</string>
                 <key>spriteSize</key>
-                <string>{36,54}</string>
+                <string>{36,56}</string>
                 <key>spriteSourceSize</key>
                 <string>{64,64}</string>
                 <key>textureRect</key>
-                <string>{{1,59},{36,54}}</string>
+                <string>{{39,1},{36,56}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>run4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-1,-4}</string>
+                <key>spriteSize</key>
+                <string>{34,56}</string>
+                <key>spriteSourceSize</key>
+                <string>{64,64}</string>
+                <key>textureRect</key>
+                <string>{{77,1},{34,56}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -46,9 +76,9 @@
             <key>realTextureFileName</key>
             <string>run.png</string>
             <key>size</key>
-            <string>{38,114}</string>
+            <string>{156,58}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:327e5c58cd3923f07b333353bd85c81a:9193ace0898808c360c70e5346288229:6290a42444d497ec9c3e7c82966554c5$</string>
+            <string>$TexturePacker:SmartUpdate:469caa32f3298f3cdfe9e272575e2658:8b9c1bfea25ea3fe54a08ac8e5e77a9a:6290a42444d497ec9c3e7c82966554c5$</string>
             <key>textureFileName</key>
             <string>run.png</string>
         </dict>
