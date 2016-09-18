@@ -1,7 +1,7 @@
-﻿#include "HelloScene.h"
-
+#include "HelloScene.h"
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
-
+using namespace CocosDenshion;
 Scene* Hello::createScene()
 {
     // 'scene' is an autorelease object
@@ -34,7 +34,10 @@ bool Hello::init()
 
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("hello.png");
-
+	if (musicOn)
+	{
+		SimpleAudioEngine::getInstance()->playBackgroundMusic("music/mein.wav");
+	}
     // position the sprite on the center of the screen
     sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 

@@ -1,42 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" nextobjectid="7">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="48" height="48" tilewidth="32" tileheight="32" nextobjectid="2">
  <tileset firstgid="1" name="ground" tilewidth="32" tileheight="32" tilecount="100" columns="10">
   <image source="ground.png" width="321" height="321"/>
-  <tile id="0">
-   <properties>
-    <property name="Collidable" value="true"/>
-   </properties>
-  </tile>
-  <tile id="1">
-   <properties>
-    <property name="Collidable" value="true"/>
-   </properties>
-  </tile>
-  <tile id="2">
-   <properties>
-    <property name="Collidable" value="true"/>
-   </properties>
-  </tile>
-  <tile id="3">
-   <properties>
-    <property name="Collidable" value="true"/>
-   </properties>
-  </tile>
-  <tile id="4">
-   <properties>
-    <property name="Collidable" value="true"/>
-   </properties>
-  </tile>
-  <tile id="10">
-   <properties>
-    <property name="Collidable" value="true"/>
-   </properties>
-  </tile>
-  <tile id="11">
-   <properties>
-    <property name="Collidable" value="true"/>
-   </properties>
-  </tile>
   <tile id="14">
    <properties>
     <property name="end" value="true"/>
@@ -51,22 +16,25 @@
    </properties>
   </tile>
  </tileset>
- <layer name="background" width="32" height="24">
+ <tileset firstgid="102" name="flo" tilewidth="32" tileheight="32" tilecount="6" columns="3">
+  <image source="flo.png" width="96" height="64"/>
+ </tileset>
+ <layer name="background" width="48" height="48">
   <data encoding="base64" compression="zlib">
-   eJztlEsOwCAIBbG2q5re/7iyNMQADYL9uJiF0Th5gG4AkCaRkRO5GhJZe1KWv+tv4fY0cNl6fu783dq83S/d9zS/5LP6rXmt/f+j3/K+v5A/2s/VNzq/9zzM+P8okX6Kpv8j50HjH8nyy/5d0XMvDqQC6x8g/Q==
+   eJztmc0OwyAMg/tz7t7/cXfZpIolxDYB0a6HaIeK8NUxkLJtWZb1orF/fl/J0SOnN8/d+Nn6MfxHhcHLW9OiVf8M/ijvHfi9env86l7g8bM+9HTZnfGq/krNkXp5/Nn+UeZ8+H/5mfDWoDXn5uRo4Rip/ybqz9Tt3/k9j6yJ/N5zxY+lzjXG8hnrb5Wf8QnDj/rBOmevwO/NodSslhvNlcmP6n8ETMw5perW6h8mtxqWLp7/I31m4VdytNZ2JH9G/4B6cyb+8xmL8Cu92DmvtYe09G+1fZBdP0hd0fEz8zMR1X40PxrK+u3Fr45hx1n9csTC+sGL8ttP5e+hJZIDuf8p35npN2fgj8Y8/NfjV9drdK+o8itnilKD6ExQNFC+qXrzMzkffrv21r3kKP4oB3JGW6yt/GgvNys/4w9mP2L4a3tJJn/rGKR/7sF/iDl68bf0tt9A882gf1Yg/y3OzK947C78VwnLY2/Z118l
   </data>
  </layer>
- <layer name="collidable" width="32" height="24" opacity="0">
+ <layer name="collidable" width="48" height="48" opacity="0">
   <data encoding="base64" compression="zlib">
-   eJzt1UsKACAIBFAv2/2v0DZCmkSnMhxoEUUv+jYRaZfLmLnOTPm6v9qbyL3V+qD+lmT30Xiv+Tuex0eJ9hnrnc333m+vb8kP/mp9T/ho/OjzcPr9Q3Nm+lq79Y9l+5Epf8+/WTrG1VQK
+   eJztlksShDAIRL2s97/C7C0J/QFN4lCVzWg3bxICnsdxnIuv6ujwjPLsxl9xdszvme9oL9z9r+DP3tuBPzrviN/tA0pNRvyIT0WgZ55pGX0Xv6v9Gn9Xz0T1au7u/Vf6DZvz6/xKrd15KM/VekRzu3NA5R+Fw494K/OMzYF4Z8/YHG6NKl6V/COWjE9lUvfNrZ+Omsh81L41E7/i4Z6tGgp/xffD03c006A65j4jc2rkw2iU/43ws3HlRzWz8jPr6uPeZ5ef0bj9ZDV+5GzQM1VWBX/FO4oHws/0OSY3Gyo/olFys/HnjzVs7sr7eufbwTLyQANhe4Klm7+bZUd+ZQ5GHhUsrqaDH7kPaJ7st6f2f+SD9oA7NqXGKvldjTNX3JiJv2JOon4d/G9F1/fDm/EV/pXXD4fA+Co=
   </data>
  </layer>
- <layer name="end" width="32" height="24">
+ <layer name="end" width="48" height="48">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AU0AJojXD7R8EoGAWjYBSMgsEC+NHwSLcfAC4FAQk=
+   eJztzrEJAAAIBDE3cP9tbcXK9iGB668KAAAAAAAAAAD+epUo/f8ajXgAWw==
   </data>
  </layer>
- <objectgroup name="objects" offsetx="0" offsety="-1.33333">
-  <object id="5" name="ninja" gid="101" x="58" y="616.667" width="32" height="32"/>
+ <objectgroup name="objects">
+  <object id="1" name="ninja" gid="101" x="68.5" y="1442.5" width="32" height="32"/>
  </objectgroup>
 </map>

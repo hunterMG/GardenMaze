@@ -1,8 +1,10 @@
-﻿#include "MyGameScene.h"
+#include "MyGameScene.h"
 #include "MainScene.h"
 #include "Globle.h"
+#include "SimpleAudioEngine.h"
+#include "SuccessScene.h"
 USING_NS_CC;
-
+using namespace CocosDenshion;
 Scene* MyGame::createScene()
 {
 	// 'scene' is an autorelease object
@@ -26,7 +28,10 @@ bool MyGame::init()
 	{
 		return false;
 	}
-
+	if (musicOn)
+	{
+		SimpleAudioEngine::getInstance()->playBackgroundMusic("music/game.wav");
+	}
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	log("visibleSize(%f, %f)", visibleSize.width, visibleSize.height);
@@ -73,6 +78,9 @@ bool MyGame::init()
 		break;
 	}
 	_tileMap = TMXTiledMap::create(mapname);
+	Vector<Node*> pChildrenArray = _tileMap->getChildren();
+	
+
 	gameView->addChild(_tileMap, 0, 100);
 	TMXObjectGroup* group = _tileMap->getObjectGroup("objects");
 	ValueMap spawnPoint = group->getObject("ninja");
@@ -88,12 +96,19 @@ bool MyGame::init()
 	this->addChild(gameView, 0);
 	this->scheduleUpdate();
 
+	_background = _tileMap->getLayer("background");
 	_end = _tileMap->getLayer("end");
 	_collidable = _tileMap->getLayer("collidable");
 	_collidable->setVisible(false);
 
+	//防止在手机上地图上下滚动时出现黑线
+	_background->getTexture()->setAliasTexParameters();
+	_end->getTexture()->setAliasTexParameters();
+	_collidable->getTexture()->setAliasTexParameters();
+
 	//摇杆  
-	rocker = HRocker::createHRocker("rocker.png", "rockerbg.png", Vec2(60, 60));
+	auto tmp = Sprite::create("rockerbg.png");
+	rocker = HRocker::createHRocker("rocker.png", "rockerbg.png", Vec2(tmp->getContentSize().width/2, tmp->getContentSize().height/2));
 	this->addChild(rocker, 2);
 	rocker->startRoker(true);
 
@@ -111,19 +126,19 @@ void MyGame::update(float delta)
 	{
 	case 1:
 		pos.x += dis;
-		hero->SetAnnimation("run.plist", "run.png", "run", 4, false);
+		hero->SetAnnimation("run.plist", "run.png", "run", 4, rocker->rockerRun);
 		break;
 	case 2:
 		pos.y += dis;
-		hero->SetAnnimation("run.plist", "run.png", "run", 4, false);
+		hero->SetAnnimation("run.plist", "run.png", "run", 4, rocker->rockerRun);
 		break;
 	case 3:
 		pos.x -= dis;
-		hero->SetAnnimation("run.plist", "run.png", "run", 4, false);
+		hero->SetAnnimation("run.plist", "run.png", "run", 4, rocker->rockerRun);
 		break;
 	case 4:
 		pos.y -= dis;
-		hero->SetAnnimation("run.plist", "run.png", "run", 4, false);
+		hero->SetAnnimation("run.plist", "run.png", "run", 4, rocker->rockerRun);
 		break;
 	default:
 		hero->StopAnimation();
@@ -155,54 +170,65 @@ bool MyGame::isEnded(Vec2 position)
 
 	if (tileGid1 > 0) {
 		Value prop = _tileMap->getPropertiesForGID(tileGid1);
-		ValueMap propValueMap = prop.asValueMap();
+		if (!prop.isNull())
+		{
+			ValueMap propValueMap = prop.asValueMap();
+			std::string collision = propValueMap["end"].asString();
 
-		std::string collision = propValueMap["end"].asString();
+			if (collision == "true") { //成功
+				log("Success!!!");
 
-		if (collision == "true") { //碰撞检测成功
-			log("Success!!!");
-
-			//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
-			return true;
+				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
+				return true;
+			}
 		}
 	}
 	if (tileGid2 > 0)
 	{
 		Value prop = _tileMap->getPropertiesForGID(tileGid2);
-		ValueMap propValueMap = prop.asValueMap();
+		if (!prop.isNull())
+		{
+			ValueMap propValueMap = prop.asValueMap();
+			std::string collision = propValueMap["end"].asString();
 
-		std::string collision = propValueMap["end"].asString();
+			if (collision == "true") { //成功
+				log("Success!!!");
 
-		if (collision == "true") { //碰撞检测成功
-			log("Success!!!");
-			//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
-			return true;
+				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
+				return true;
+			}
 		}
 	}
 	if (tileGid3 > 0)
 	{
 		Value prop = _tileMap->getPropertiesForGID(tileGid3);
-		ValueMap propValueMap = prop.asValueMap();
+		if (!prop.isNull())
+		{
+			ValueMap propValueMap = prop.asValueMap();
+			std::string collision = propValueMap["end"].asString();
 
-		std::string collision = propValueMap["end"].asString();
+			if (collision == "true") { //成功
+				log("Success!!!");
 
-		if (collision == "true") { //碰撞检测成功
-			log("Success!!!");
-			//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
-			return true;
+				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
+				return true;
+			}
 		}
 	}
 	if (tileGid4 > 0)
 	{
 		Value prop = _tileMap->getPropertiesForGID(tileGid4);
-		ValueMap propValueMap = prop.asValueMap();
+		if (!prop.isNull())
+		{
+			ValueMap propValueMap = prop.asValueMap();
+			std::string collision = propValueMap["end"].asString();
 
-		std::string collision = propValueMap["end"].asString();
+			if (collision == "true") { //成功
+				log("Success!!!");
 
-		if (collision == "true") { //碰撞检测成功
-			log("Success!!!");
-			//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
-			return true;
+				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
+				return true;
+			}
 		}
 	}
 	return false;
@@ -213,7 +239,13 @@ void MyGame::setPlayerPosition(Vec2 position)
 	if (isEnded(position))
 	{
 		log("end");
-		Director::getInstance()->popScene();
+		auto sc = Success::createScene();
+		Director::getInstance()->replaceScene(sc);
+		if (musicOn)
+		{
+			CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/success.wav");
+		}
+		
 		return;
 	}
 	int dis = 20;
@@ -238,54 +270,61 @@ void MyGame::setPlayerPosition(Vec2 position)
 
 	if (tileGid1 > 0) {
 		Value prop = _tileMap->getPropertiesForGID(tileGid1);
-		ValueMap propValueMap = prop.asValueMap();
+		if (!prop.isNull())
+		{
+			ValueMap propValueMap = prop.asValueMap();
+			std::string collision = propValueMap["Collidable"].asString();
+			if (collision == "true") { //碰撞检测成功
+				log("collision!!!");
 
-		std::string collision = propValueMap["Collidable"].asString();
-
-		if (collision == "true") { //碰撞检测成功
-			log("collision!!!");
-
-			//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
-			return;
+				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
+				return;
+			}
 		}
 	}
 	if (tileGid2 > 0)
 	{
 		Value prop = _tileMap->getPropertiesForGID(tileGid2);
-		ValueMap propValueMap = prop.asValueMap();
+		if (!prop.isNull())
+		{
+			ValueMap propValueMap = prop.asValueMap();
+			std::string collision = propValueMap["Collidable"].asString();
+			if (collision == "true") { //碰撞检测成功
+				log("collision!!!");
 
-		std::string collision = propValueMap["Collidable"].asString();
-
-		if (collision == "true") { //碰撞检测成功
-			log("collision!!!");
-			//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
-			return;
+				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
+				return;
+			}
 		}
 	}
 	if (tileGid3 > 0)
 	{
 		Value prop = _tileMap->getPropertiesForGID(tileGid3);
-		ValueMap propValueMap = prop.asValueMap();
+		if (!prop.isNull())
+		{
+			ValueMap propValueMap = prop.asValueMap();
+			std::string collision = propValueMap["Collidable"].asString();
+			if (collision == "true") { //碰撞检测成功
+				log("collision!!!");
 
-		std::string collision = propValueMap["Collidable"].asString();
-
-		if (collision == "true") { //碰撞检测成功
-			log("collision!!!");
-			//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
-			return;
+				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
+				return;
+			}
 		}
 	}
 	if (tileGid4 > 0)
 	{
 		Value prop = _tileMap->getPropertiesForGID(tileGid4);
-		ValueMap propValueMap = prop.asValueMap();
+		if (!prop.isNull())
+		{
+			ValueMap propValueMap = prop.asValueMap();
+			std::string collision = propValueMap["Collidable"].asString();
+			if (collision == "true") { //碰撞检测成功
+				log("collision!!!");
 
-		std::string collision = propValueMap["Collidable"].asString();
-
-		if (collision == "true") { //碰撞检测成功
-			log("collision!!!");
-			//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
-			return;
+				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
+				return;
+			}
 		}
 	}
 
@@ -333,6 +372,10 @@ void MyGame::setViewpointCenter(Vec2 position)
 
 void MyGame::menuCloseCallback(Ref* pSender)
 {
+	if (musicOn)
+	{
+		SimpleAudioEngine::getInstance()->playBackgroundMusic("music/mein.wav");
+	}
 	Director::getInstance()->popScene();
 	/*
 	Director::getInstance()->end();

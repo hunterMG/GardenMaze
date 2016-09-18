@@ -11,6 +11,6 @@ typedef enum
 	forth
 }Lerver;
 extern Lerver lerver;
-
+extern bool musicOn;
 
 #endif // __GLOBLE_H__

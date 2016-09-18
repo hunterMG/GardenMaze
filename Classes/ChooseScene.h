@@ -1,4 +1,4 @@
-#ifndef __CHOOSE_SCENE_H__
+﻿#ifndef __CHOOSE_SCENE_H__
 #define __CHOOSE_SCENE_H__
 
 #include "cocos2d.h"

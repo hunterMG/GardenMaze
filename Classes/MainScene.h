@@ -1,4 +1,4 @@
-﻿#ifndef __MAIN_SCENE_H__
+#ifndef __MAIN_SCENE_H__
 #define __MAIN_SCENE_H__
 
 #include "cocos2d.h"
@@ -15,8 +15,9 @@ typedef enum {
 class Main: public cocos2d::Layer
 {
 public:
+	Vec2 origin;
 	static cocos2d::Scene* createScene();
-
+	void displayQR();
 	virtual bool init();
 
 	// a selector callback

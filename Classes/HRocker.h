@@ -1,4 +1,4 @@
-﻿#ifndef __HROCKER_H__
+#ifndef __HROCKER_H__
 #define __HROCKER_H__
 
 #include "cocos2d.h"

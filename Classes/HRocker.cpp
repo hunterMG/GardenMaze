@@ -1,4 +1,4 @@
-﻿#include "HRocker.h"
+#include "HRocker.h"
 const double PI = 3.1415;
 
 HRocker::HRocker(void)

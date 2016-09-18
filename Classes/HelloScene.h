@@ -1,10 +1,10 @@
-﻿#ifndef __HELLO_SCENE_H__
+#ifndef __HELLO_SCENE_H__
 #define __HELLO_SCENE_H__
 
 #include "cocos2d.h"
 
 #include "MainScene.h"
-
+#include "Globle.h"
 class Hello : public cocos2d::Layer
 {
 public:

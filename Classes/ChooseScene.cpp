@@ -1,4 +1,4 @@
-#include "ChooseScene.h"
+﻿#include "ChooseScene.h"
 
 USING_NS_CC;
 
@@ -78,7 +78,7 @@ void Choose::buildUI()
 	auto *thirdMenuItem = MenuItemImage::create("third.png", "third.png", CC_CALLBACK_1(Choose::ThirdLerverCallback, this));
 	thirdMenuItem->setPosition(Vec2(firstMenuItem->getPositionX(), origin.y + visibleSize.height * 3 / 8));
 	//第四关图片
-	auto *forthMenuItem = MenuItemImage::create("forth.png", "forth.png", CC_CALLBACK_1(Choose::ThirdLerverCallback, this));
+	auto *forthMenuItem = MenuItemImage::create("forth.png", "forth.png", CC_CALLBACK_1(Choose::ForthLerverCallback, this));
 	forthMenuItem->setPosition(Vec2(firstMenuItem->getPositionX(), origin.y + visibleSize.height * 2 / 8));
 	Menu * mu = Menu::create(firstMenuItem, secondMenuItem, thirdMenuItem,forthMenuItem, NULL);
 	mu->setPosition(Vec2::ZERO);
@@ -92,23 +92,27 @@ void Choose::firstLerverCallback(Ref *pSender)
 {
 	lerver = first;
 	auto gameScene = MyGame::createScene();
-	Director::getInstance()->pushScene(gameScene);
+	auto reScene = TransitionRotoZoom::create(1.0f, gameScene);
+	Director::getInstance()->pushScene(reScene);
 }
 void Choose::secondLerverCallback(Ref *pSender)
 {
-	lerver = first;
+	lerver = secondd;
 	auto gameScene = MyGame::createScene();
-	Director::getInstance()->pushScene(gameScene);
+	auto reScene = TransitionRotoZoom::create(1.0f, gameScene);
+	Director::getInstance()->pushScene(reScene);
 }
 void Choose::ThirdLerverCallback(Ref *pSender)
 {
-	lerver = first;
+	lerver = third;
 	auto gameScene = MyGame::createScene();
-	Director::getInstance()->pushScene(gameScene);
+	auto reScene = TransitionRotoZoom::create(1.0f, gameScene);
+	Director::getInstance()->pushScene(reScene);
 }
 void Choose::ForthLerverCallback(Ref *pSender)
 {
-	lerver = first;
+	lerver = forth;
 	auto gameScene = MyGame::createScene();
-	Director::getInstance()->pushScene(gameScene);
+	auto reScene = TransitionRotoZoom::create(1.0f, gameScene);
+	Director::getInstance()->pushScene(reScene);
 }

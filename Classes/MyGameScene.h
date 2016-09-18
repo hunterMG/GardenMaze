@@ -1,4 +1,4 @@
-﻿#ifndef __MYGAME_SCENE_H__
+#ifndef __MYGAME_SCENE_H__
 #define __MYGAME_SCENE_H__
 
 #include "cocos2d.h"
@@ -12,6 +12,7 @@ class MyGame : public cocos2d::Layer
 	cocos2d::TMXTiledMap* _tileMap;
 	cocos2d::TMXLayer* _collidable;
 	cocos2d::TMXLayer* _end;
+	TMXLayer* _background;
 	cocos2d::Sprite *_player;
 	Hero *hero;
 public:

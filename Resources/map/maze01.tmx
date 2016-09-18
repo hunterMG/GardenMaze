@@ -51,6 +51,9 @@
    </properties>
   </tile>
  </tileset>
+ <tileset firstgid="102" name="flo" tilewidth="32" tileheight="32" tilecount="6" columns="3">
+  <image source="flo.png" width="96" height="64"/>
+ </tileset>
  <layer name="background" width="32" height="24">
   <data encoding="base64" compression="zlib">
    eJztlEsOwCAIBbG2q5re/7iyNMQADYL9uJiF0Th5gG4AkCaRkRO5GhJZe1KWv+tv4fY0cNl6fu783dq83S/d9zS/5LP6rXmt/f+j3/K+v5A/2s/VNzq/9zzM+P8okX6Kpv8j50HjH8nyy/5d0XMvDqQC6x8g/Q==
@@ -58,7 +61,7 @@
  </layer>
  <layer name="collidable" width="32" height="24" opacity="0">
   <data encoding="base64" compression="zlib">
-   eJzt1UsKACAIBFAv2/2v0DZCmkSnMhxoEUUv+jYRaZfLmLnOTPm6v9qbyL3V+qD+lmT30Xiv+Tuex0eJ9hnrnc333m+vb8kP/mp9T/ho/OjzcPr9Q3Nm+lq79Y9l+5Epf8+/WTrG1VQK
+   eJzt1UsKQCEIBVBX0C7b/xaaRkh61b54wcEj6YAVrxJRPVx9xu+VSZ/3Z2cTebZcj9SP5HVf2u82X+N5fCnR/op5v+Z737fXR/KDP5vvDl/aP/o+oH7pStPPedYZe31uHf3HIrH4kUlf55+sBsbUVF4=
   </data>
  </layer>
  <layer name="end" width="32" height="24">
@@ -67,6 +70,6 @@
   </data>
  </layer>
  <objectgroup name="objects" offsetx="0" offsety="-1.33333">
-  <object id="5" name="ninja" gid="101" x="58" y="616.667" width="32" height="32"/>
+  <object id="5" name="ninja" gid="101" x="56" y="661.667" width="32" height="32"/>
  </objectgroup>
 </map>

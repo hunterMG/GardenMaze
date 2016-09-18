@@ -1,6 +1,8 @@
-﻿#include "SettingScene.h"
-
+#include "SettingScene.h"
+#include "SimpleAudioEngine.h"
+#include "Globle.h"
 USING_NS_CC;
+using namespace CocosDenshion;
 
 Scene* Setting::createScene()
 {
@@ -61,16 +63,32 @@ bool Setting::init()
 	auto center = Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2);
 	soundToggleMenuItem->setPosition(center.x, visibleSize.height*4);*/
 	//音乐
-	auto musicOnMenuItem = MenuItemImage::create("on.png", "on.png");
-	auto musicOffMenuItem = MenuItemImage::create("off.png", "off.png");
-	auto musicToggleMenuItem = MenuItemToggle::createWithCallback(CC_CALLBACK_1(Setting::menuMusicToggleCallback, this), musicOnMenuItem, musicOffMenuItem, NULL);
-	musicToggleMenuItem->setPosition(visibleSize.width/2, visibleSize.height/2);
-	//OK按钮
-	auto okMenuItem = MenuItemImage::create("ok.png", "ok.png", CC_CALLBACK_1(Setting::menuOkCallback, this));
-	okMenuItem->setPosition(visibleSize.width / 2, visibleSize.height / 3);
-	Menu * mn = Menu::create(musicToggleMenuItem, okMenuItem, NULL);
-	mn->setPosition(Vec2::ZERO);
-	addChild(mn);
+	if (musicOn == true)
+	{
+		auto musicOnMenuItem = MenuItemImage::create("on.png", "on.png");
+		auto musicOffMenuItem = MenuItemImage::create("off.png", "off.png");
+		auto musicToggleMenuItem = MenuItemToggle::createWithCallback(CC_CALLBACK_1(Setting::menuMusicToggleCallback, this), musicOnMenuItem, musicOffMenuItem, NULL);
+		musicToggleMenuItem->setPosition(visibleSize.width / 2, visibleSize.height / 2);
+		//OK按钮
+		auto okMenuItem = MenuItemImage::create("ok.png", "ok.png", CC_CALLBACK_1(Setting::menuOkCallback, this));
+		okMenuItem->setPosition(visibleSize.width / 2, visibleSize.height / 3);
+		Menu * mn = Menu::create(musicToggleMenuItem, okMenuItem, NULL);
+		mn->setPosition(Vec2::ZERO);
+		addChild(mn);
+	}
+	else
+	{
+		auto musicOffMenuItem = MenuItemImage::create("on.png", "on.png");
+		auto musicOnMenuItem = MenuItemImage::create("off.png", "off.png");
+		auto musicToggleMenuItem = MenuItemToggle::createWithCallback(CC_CALLBACK_1(Setting::menuMusicToggleCallback, this), musicOnMenuItem, musicOffMenuItem, NULL);
+		musicToggleMenuItem->setPosition(visibleSize.width / 2, visibleSize.height / 2);
+		//OK按钮
+		auto okMenuItem = MenuItemImage::create("ok.png", "ok.png", CC_CALLBACK_1(Setting::menuOkCallback, this));
+		okMenuItem->setPosition(visibleSize.width / 2, visibleSize.height / 3);
+		Menu * mn = Menu::create(musicToggleMenuItem, okMenuItem, NULL);
+		mn->setPosition(Vec2::ZERO);
+		addChild(mn);
+	}
 	return true;
 }
 
@@ -85,7 +103,27 @@ void Setting::menuSoundToggleCallback(cocos2d::Ref * pSender)
 
 void Setting::menuMusicToggleCallback(cocos2d::Ref * pSender)
 {
+	/*
+	auto musicToggleMenuItem = (MenuItemToggle *)pSender;
+	if (musicToggleMenuItem->getSelectedIndex() == 1)
+	{
+	SimpleAudioEngine::getInstance()->stopBackgroundMusic("music/mein.wav");
+	//::getInstance()->setBackgroundMusicVolume(0);
+	}
+	else {
+	SimpleAudioEngine::getInstance()->playBackgroundMusic("music/mein.wav");
+	}
+	*/
+	if (musicOn)
+	{
+		SimpleAudioEngine::getInstance()->stopBackgroundMusic("music/mein.wav");
+	}
+	else
+	{
+		SimpleAudioEngine::getInstance()->playBackgroundMusic("music/mein.wav");
 
+	}
+	musicOn = !musicOn;
 }
 
 void Setting::menuOkCallback(cocos2d::Ref * pSender)
