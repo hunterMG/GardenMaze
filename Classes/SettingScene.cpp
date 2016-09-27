@@ -116,11 +116,11 @@ void Setting::menuMusicToggleCallback(cocos2d::Ref * pSender)
 	*/
 	if (musicOn)
 	{
-		SimpleAudioEngine::getInstance()->stopBackgroundMusic("music/mein.wav");
+		SimpleAudioEngine::getInstance()->stopBackgroundMusic(bgmName);
 	}
 	else
 	{
-		SimpleAudioEngine::getInstance()->playBackgroundMusic("music/mein.wav");
+		SimpleAudioEngine::getInstance()->playBackgroundMusic(bgmName, true);
 
 	}
 	musicOn = !musicOn;

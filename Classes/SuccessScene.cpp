@@ -59,6 +59,6 @@ void Success::menuCloseCallback(Ref* pSender)
 	Director::getInstance()->popScene();
 	if (musicOn)
 	{
-		CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("music/mein.wav");
+		CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(bgmName, true);
 	}
 }

@@ -1,8 +1,9 @@
 #include "MainScene.h"
 #include "SettingScene.h"
 #include "HelpScene.h"
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
-
+using namespace CocosDenshion;
 Scene* Main::createScene()
 {
 	// 'scene' is an autorelease object
@@ -37,8 +38,8 @@ bool Main::init()
 
 	// add a "close" icon to exit the progress. it's an autorelease object
 	auto closeItem = MenuItemImage::create(
-		"back.png",
-		"back.png",
+		"exit.png",
+		"exit.png",
 		CC_CALLBACK_1(Main::menuCloseCallback, this));
 
 	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width / 2,
@@ -58,17 +59,21 @@ bool Main::init()
 	auto startSpriteNormal = Sprite::create("start.png");
 	auto startSpriteSelected = Sprite::create("start.png");
 	auto startMenuItem = MenuItemSprite::create(startSpriteNormal, startSpriteSelected, CC_CALLBACK_1(Main::menuItemStartCallback, this));
-	startMenuItem->setPosition(Vec2(origin.x + visibleSize.width *6/ 9, origin.y + visibleSize.height * 5 / 8));
+	startMenuItem->setPosition(Vec2(origin.x + visibleSize.width *3/ 4, origin.y + visibleSize.height * 10 / 16));
 	//设置图片菜单
 	auto  * settingMenuItem = MenuItemImage::create("setting.png", "setting.png", CC_CALLBACK_1(Main::menuItemSettingCallback, this));
-	settingMenuItem->setPosition(Vec2(startMenuItem->getPositionX(), visibleSize.height*3/8));
+	settingMenuItem->setPosition(Vec2(startMenuItem->getPositionX(), visibleSize.height*7/16));
 	//帮助图片菜单
 	auto *helpMenuItem = MenuItemImage::create("help.png", "help.png", CC_CALLBACK_1(Main::menuItemHelpCallback, this));
-	helpMenuItem->setPosition(Vec2(startMenuItem->getPositionX(), visibleSize.height*1/8));
+	helpMenuItem->setPosition(Vec2(startMenuItem->getPositionX(), visibleSize.height*4/16));
 	Menu * mu = Menu::create(startMenuItem, settingMenuItem, helpMenuItem, NULL);
 	mu->setPosition(Vec2::ZERO);
 	this->addChild(mu);
 	displayQR();
+	if (musicOn)
+	{
+		SimpleAudioEngine::getInstance()->playBackgroundMusic(bgmName, true);
+	}
 	return true;
 }
 

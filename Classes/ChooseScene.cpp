@@ -70,16 +70,16 @@ void Choose::buildUI()
 	auto firstSpriteNormal = Sprite::create("first.png");
 	auto firstSpriteSelected = Sprite::create("first.png");
 	auto firstMenuItem = MenuItemSprite::create(firstSpriteNormal, firstSpriteSelected, CC_CALLBACK_1(Choose::firstLerverCallback, this));
-	firstMenuItem->setPosition(Vec2(origin.x + visibleSize.width *3/ 4, origin.y + visibleSize.height * 5 / 8));
+	firstMenuItem->setPosition(Vec2(origin.x + visibleSize.width *3/ 4, origin.y + visibleSize.height * 22 / 32));
 	//第二关图片
 	auto  * secondMenuItem = MenuItemImage::create("second.png", "second.png", CC_CALLBACK_1(Choose::secondLerverCallback, this));
-	secondMenuItem->setPosition(Vec2(firstMenuItem->getPositionX(), origin.y + visibleSize.height * 4 / 8));
+	secondMenuItem->setPosition(Vec2(firstMenuItem->getPositionX(), origin.y + visibleSize.height * 17 / 32));
 	//第三关图片
 	auto *thirdMenuItem = MenuItemImage::create("third.png", "third.png", CC_CALLBACK_1(Choose::ThirdLerverCallback, this));
-	thirdMenuItem->setPosition(Vec2(firstMenuItem->getPositionX(), origin.y + visibleSize.height * 3 / 8));
+	thirdMenuItem->setPosition(Vec2(firstMenuItem->getPositionX(), origin.y + visibleSize.height * 12 / 32));
 	//第四关图片
 	auto *forthMenuItem = MenuItemImage::create("forth.png", "forth.png", CC_CALLBACK_1(Choose::ForthLerverCallback, this));
-	forthMenuItem->setPosition(Vec2(firstMenuItem->getPositionX(), origin.y + visibleSize.height * 2 / 8));
+	forthMenuItem->setPosition(Vec2(firstMenuItem->getPositionX(), origin.y + visibleSize.height * 7 / 32));
 	Menu * mu = Menu::create(firstMenuItem, secondMenuItem, thirdMenuItem,forthMenuItem, NULL);
 	mu->setPosition(Vec2::ZERO);
 	this->addChild(mu);

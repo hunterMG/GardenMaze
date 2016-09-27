@@ -21,6 +21,11 @@
    eJztms1uwzAMg9OkO63Y+z/u2sMAw7ApUmJcpNhBQNHYzheKltWffdu220XjeMb3M366uA3ec17PxDF47/Fh/KMcsXy7MDeKqv6ZYDWPxh3Ccyn8Lk84vfXHn93/7+Bv5zv9M7rP6FmZvd/XyBX8iOvY5nzMfoj4FY8oNWnGUMljVf/V/Og+WX51b6tj2fuPzi+G2aWlmsc+WP7s+lfjz54dzHi1/4lqXsVLmf2s9j89v9MjV+IfzXXV056/7YERf7Ue9vxs7x3xO3srld+h/1n8US1B/IgJ+b/NKcusjM3w9zogfjYXK/kV/VkvZ/n7Pevgj1hUflSbWGaGXzn3UX1UzmeFf7amWn/YnJx5DfknCjd/xltO/sgrUf+IPHMGfyXXDL+690b80VmZjew6aB6jv4s/0585+Nm8ur8jadedrT3qnx3+UPSt5MDZf16BfwdjKp93Ij+2r9u+Sf39Aj2fW3/EP9M/yhnSdRU/8o/KP4uMX5BnMvyqfzLjWM0z/BUuN/8sRxn+iiciHkbzKr+qaTSnvf7Pj73wRfKy/S96PsZjK/v/yvxP5r8TOX93zP5T8PLzL9lpYAg=
   </data>
  </layer>
+ <layer name="flower" width="48" height="48">
+  <data encoding="base64" compression="zlib">
+   eJzt2MsOQEAMheF5CSyxxBLv/2pOInZCSOei/i8522q0GTEh+FAptdIUWu+udqt0Sm/0DOt6qWoDAIA4BmVUptyNvDQri7LmbsQZ9sI35rvjPSAl9s0nq7nGvGu6YjVX7oMAfE2uc9cK5+4/sbc+8Z+AM6XtxdN+StuL0vpJje8HDhu3Hw5Z
+  </data>
+ </layer>
  <layer name="collidable" width="48" height="48" opacity="0">
   <data encoding="base64" compression="zlib">
    eJzlVUEOwzAI62f3/y/sOiEwtqGt2lmqNCXEeMGBz3Ecn4d/Edna5r6DSueb9DO16biYs6ofWP0TsDxM7RSfb+Vlsemt7XfP5pwg8/sZqP6r45+4H2M3gHicHlHxdlzubGD1q0CanPu/Wj/icvWrdVNj1fzd2Y2+w0LhV3uDyu/gTv3u7HDnTfWeu/U7Zhijv4rf9syT9CszxOFm/ZOdc/shw+fqn4C9a7Xno3xX6J/MLKbfoT1mHjK50D6rX+mBigfZM1P92Z7C2a2ptWJqrOjvtKj6Ua0Vz6A450O5tu6V4VT7jzqLztiLcUrP3NbveCvjYNH5u9PIcp+lv8s7iXPfntIzJnB53P4/zVvl2nhzkVPJy9ZWgcvtvvuKa4On447r/6S/q2XFo3iwmwfMPEb9qsL2/SP9v7+Z+6zWpvMTgeGb6ke5tz2D8rB7in4Hm/o7/o04dA69y7iu8E88wejJfsezE/0qmJ7c/Ubxb9OveiHjV73E8LD6VVxx/u36n/x9AXamC44=

@@ -14,7 +14,10 @@
         <!-- Tell Cocos2dxActivity the name of our .so -->
         <meta-data android:name="android.app.lib_name"
 	              android:value="cocos2dcpp" />
-
+        <!-- baiduAD information -->
+        <meta-data android:name="BDAPPID" android:value="8674601"/>
+		<meta-data android:name="BDAPPKEY" android:value="ocGOV67NulDjirdxVsICqG5aIqXXZH65"/>
+		
         <activity android:name="org.cocos2dx.cpp.AppActivity"
                   android:label="@string/app_name"
                   android:screenOrientation="landscape"
@@ -35,4 +38,8 @@
                       android:xlargeScreens="true"/>
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 </manifest> 

@@ -30,7 +30,7 @@ bool MyGame::init()
 	}
 	if (musicOn)
 	{
-		SimpleAudioEngine::getInstance()->playBackgroundMusic("music/game.wav");
+		SimpleAudioEngine::getInstance()->playBackgroundMusic(gmName, true);
 	}
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -78,8 +78,6 @@ bool MyGame::init()
 		break;
 	}
 	_tileMap = TMXTiledMap::create(mapname);
-	Vector<Node*> pChildrenArray = _tileMap->getChildren();
-	
 
 	gameView->addChild(_tileMap, 0, 100);
 	TMXObjectGroup* group = _tileMap->getObjectGroup("objects");
@@ -146,28 +144,12 @@ void MyGame::update(float delta)
 	}
 	this->setPlayerPosition(pos);
 }
-bool MyGame::isEnded(Vec2 position)
+bool MyGame::check(Point position)
 {
-	int dis = 20;
-	Point pos1 = Vec2(position.x - dis, position.y - dis);
-	Point pos2 = Vec2(position.x - dis, position.y + dis);
-	Point pos3 = Vec2(position.x + dis, position.y - dis);
-	Point pos4 = Vec2(position.x + dis, position.y + dis);
-
 	//从像素点坐标转化为瓦片坐标
-	Vec2 tileCoord1 = this->tileCoordFromPosition(pos1);
-	Vec2 tileCoord2 = this->tileCoordFromPosition(pos2);
-	Vec2 tileCoord3 = this->tileCoordFromPosition(pos3);
-	Vec2 tileCoord4 = this->tileCoordFromPosition(pos4);
-
-	Vec2 tileCoord = this->tileCoordFromPosition(position);
+	Vec2 tileCoord1 = this->tileCoordFromPosition(position);
 	//获得瓦片的GID
-
 	int tileGid1 = _end->getTileGIDAt(tileCoord1);
-	int tileGid2 = _end->getTileGIDAt(tileCoord2);
-	int tileGid3 = _end->getTileGIDAt(tileCoord3);
-	int tileGid4 = _end->getTileGIDAt(tileCoord4);
-
 	if (tileGid1 > 0) {
 		Value prop = _tileMap->getPropertiesForGID(tileGid1);
 		if (!prop.isNull())
@@ -177,61 +159,53 @@ bool MyGame::isEnded(Vec2 position)
 
 			if (collision == "true") { //成功
 				log("Success!!!");
-
 				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
 				return true;
 			}
 		}
 	}
-	if (tileGid2 > 0)
-	{
-		Value prop = _tileMap->getPropertiesForGID(tileGid2);
+	else
+		return false;
+}
+bool MyGame::check2(Point position)
+{
+	//从像素点坐标转化为瓦片坐标
+	Vec2 tileCoord1 = this->tileCoordFromPosition(position);
+	//获得瓦片的GID
+	int tileGid1 = _collidable->getTileGIDAt(tileCoord1);
+	if (tileGid1 > 0) {
+		Value prop = _tileMap->getPropertiesForGID(tileGid1);
 		if (!prop.isNull())
 		{
 			ValueMap propValueMap = prop.asValueMap();
-			std::string collision = propValueMap["end"].asString();
-
+			std::string collision = propValueMap["Collidable"].asString();
 			if (collision == "true") { //成功
-				log("Success!!!");
-
+				log("collision!!!");
 				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
 				return true;
 			}
 		}
 	}
-	if (tileGid3 > 0)
-	{
-		Value prop = _tileMap->getPropertiesForGID(tileGid3);
-		if (!prop.isNull())
-		{
-			ValueMap propValueMap = prop.asValueMap();
-			std::string collision = propValueMap["end"].asString();
-
-			if (collision == "true") { //成功
-				log("Success!!!");
-
-				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
-				return true;
-			}
-		}
-	}
-	if (tileGid4 > 0)
-	{
-		Value prop = _tileMap->getPropertiesForGID(tileGid4);
-		if (!prop.isNull())
-		{
-			ValueMap propValueMap = prop.asValueMap();
-			std::string collision = propValueMap["end"].asString();
-
-			if (collision == "true") { //成功
-				log("Success!!!");
-
-				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
-				return true;
-			}
-		}
-	}
-	return false;
+	else 
+		return false;
+}
+bool MyGame::isEnded(Vec2 position)
+{
+	int dis = 20;
+	Point pos = Vec2(position.x, position.y);
+	Point pos1 = Vec2(position.x , position.y - dis);
+	Point pos2 = Vec2(position.x , position.y + dis);
+	Point pos3 = Vec2(position.x - dis, position.y );
+	Point pos4 = Vec2(position.x + dis, position.y );
+	Point pos5 = Vec2(position.x - dis, position.y - dis);
+	Point pos6 = Vec2(position.x - dis, position.y + dis);
+	Point pos7 = Vec2(position.x + dis, position.y - dis);
+	Point pos8 = Vec2(position.x + dis, position.y + dis);
+	if (check(pos)||check(pos1)||check(pos2)||check(pos3)||check(pos4) || check(pos5) || check(pos6) || check(pos7) || check(pos8))
+		return true;
+	else
+		return false;
+	
 }
 void MyGame::setPlayerPosition(Vec2 position)
 {
@@ -243,93 +217,25 @@ void MyGame::setPlayerPosition(Vec2 position)
 		Director::getInstance()->replaceScene(sc);
 		if (musicOn)
 		{
-			CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("music/success.wav");
+			SimpleAudioEngine::getInstance()->stopBackgroundMusic(gmName);
+			CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(scName);
 		}
-		
 		return;
 	}
 	int dis = 20;
-	Point pos1 = Vec2(position.x - dis, position.y - dis);
-	Point pos2 = Vec2(position.x - dis, position.y + dis);
-	Point pos3 = Vec2(position.x + dis, position.y - dis);
-	Point pos4 = Vec2(position.x + dis, position.y + dis);
-
-	//从像素点坐标转化为瓦片坐标
-	Vec2 tileCoord1 = this->tileCoordFromPosition(pos1);
-	Vec2 tileCoord2 = this->tileCoordFromPosition(pos2);
-	Vec2 tileCoord3 = this->tileCoordFromPosition(pos3);
-	Vec2 tileCoord4 = this->tileCoordFromPosition(pos4);
-
-	Vec2 tileCoord = this->tileCoordFromPosition(position);
-	//获得瓦片的GID
-
-	int tileGid1 = _collidable->getTileGIDAt(tileCoord1);
-	int tileGid2 = _collidable->getTileGIDAt(tileCoord2);
-	int tileGid3 = _collidable->getTileGIDAt(tileCoord3);
-	int tileGid4 = _collidable->getTileGIDAt(tileCoord4);
-
-	if (tileGid1 > 0) {
-		Value prop = _tileMap->getPropertiesForGID(tileGid1);
-		if (!prop.isNull())
-		{
-			ValueMap propValueMap = prop.asValueMap();
-			std::string collision = propValueMap["Collidable"].asString();
-			if (collision == "true") { //碰撞检测成功
-				log("collision!!!");
-
-				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
-				return;
-			}
-		}
-	}
-	if (tileGid2 > 0)
-	{
-		Value prop = _tileMap->getPropertiesForGID(tileGid2);
-		if (!prop.isNull())
-		{
-			ValueMap propValueMap = prop.asValueMap();
-			std::string collision = propValueMap["Collidable"].asString();
-			if (collision == "true") { //碰撞检测成功
-				log("collision!!!");
-
-				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
-				return;
-			}
-		}
-	}
-	if (tileGid3 > 0)
-	{
-		Value prop = _tileMap->getPropertiesForGID(tileGid3);
-		if (!prop.isNull())
-		{
-			ValueMap propValueMap = prop.asValueMap();
-			std::string collision = propValueMap["Collidable"].asString();
-			if (collision == "true") { //碰撞检测成功
-				log("collision!!!");
-
-				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
-				return;
-			}
-		}
-	}
-	if (tileGid4 > 0)
-	{
-		Value prop = _tileMap->getPropertiesForGID(tileGid4);
-		if (!prop.isNull())
-		{
-			ValueMap propValueMap = prop.asValueMap();
-			std::string collision = propValueMap["Collidable"].asString();
-			if (collision == "true") { //碰撞检测成功
-				log("collision!!!");
-
-				//CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("empty.wav");
-				return;
-			}
-		}
-	}
+	Point pos = Vec2(position.x, position.y);
+	Point pos1 = Vec2(position.x, position.y - dis);
+	Point pos2 = Vec2(position.x, position.y + dis);
+	Point pos3 = Vec2(position.x - dis, position.y);
+	Point pos4 = Vec2(position.x + dis, position.y);
+	Point pos5 = Vec2(position.x - dis, position.y - dis);
+	Point pos6 = Vec2(position.x - dis, position.y + dis);
+	Point pos7 = Vec2(position.x + dis, position.y - dis);
+	Point pos8 = Vec2(position.x + dis, position.y + dis);
+	if (check2(pos)||check2(pos1) || check2(pos2) || check2(pos3) || check2(pos4) || check2(pos5) || check2(pos6) || check2(pos7) || check2(pos8))
+		return;
 
 	//移动精灵
-	//_player->setPosition(position);
 	hero->setPosition(position);
 	//滚动地图
 	this->setViewpointCenter(hero->getPosition());
@@ -374,7 +280,7 @@ void MyGame::menuCloseCallback(Ref* pSender)
 {
 	if (musicOn)
 	{
-		SimpleAudioEngine::getInstance()->playBackgroundMusic("music/mein.wav");
+		SimpleAudioEngine::getInstance()->playBackgroundMusic(bgmName, true);
 	}
 	Director::getInstance()->popScene();
 	/*

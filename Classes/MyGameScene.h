@@ -21,6 +21,8 @@ public:
 	virtual bool init();
 	//判断是否到达终点
 	bool isEnded(Vec2 pos);
+	bool check(Point position);
+	bool check2(Point position);
 	virtual void update(float delta);
 
 	void setPlayerPosition(cocos2d::Vec2 position);
