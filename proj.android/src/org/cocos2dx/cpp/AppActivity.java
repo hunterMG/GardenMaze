@@ -1,4 +1,4 @@
-ï»¿/****************************************************************************
+/****************************************************************************
 Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
@@ -35,20 +35,20 @@ import android.os.Bundle;
 public class AppActivity extends Cocos2dxActivity {
 
 	protected void onCreate(Bundle savedInstanceState){
-    	super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);
     	
-    	MobClickCppHelper.init(this,"57de3179e0f55acd8e002743","baidu");
+		MobClickCppHelper.init(this, "57de3179e0f55acd8e002743", "tencent");
 	}
 	@Override
     public void onResume() {
-        super.onResume();
-        //é›†æˆæ¸¸æˆç»Ÿè®¡åˆ†æ,åˆå§‹åŒ– Session
-        MobClickCppHelper.onResume(this);
+		super.onResume();
+        //¼¯³ÉÓÎÏ·Í³¼Æ·ÖÎö,³õÊ¼»¯ Session
+		MobClickCppHelper.onResume(this);
     }
 	@Override
     public void onPause() {
-        super.onPause();
-        // //é›†æˆæ¸¸æˆç»Ÿè®¡åˆ†æ, ç»“æŸ Session
-        MobClickCppHelper.onPause(this);
-    }
+		super.onPause();
+        // //¼¯³ÉÓÎÏ·Í³¼Æ·ÖÎö, ½áÊø Session
+		MobClickCppHelper.onPause(this);
+	}
 }
