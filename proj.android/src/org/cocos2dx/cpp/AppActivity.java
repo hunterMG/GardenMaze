@@ -37,7 +37,7 @@ public class AppActivity extends Cocos2dxActivity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
     	
-		MobClickCppHelper.init(this, "57de3179e0f55acd8e002743", "tencent");
+		MobClickCppHelper.init(this, "57de3179e0f55acd8e002743", "ali");
 	}
 	@Override
     public void onResume() {
