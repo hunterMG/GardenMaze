@@ -69,7 +69,7 @@ bool Main::init()
 	Menu * mu = Menu::create(startMenuItem, settingMenuItem, helpMenuItem, NULL);
 	mu->setPosition(Vec2::ZERO);
 	this->addChild(mu);
-	displayQR();
+	//displayQR();
 	if (musicOn)
 	{
 		SimpleAudioEngine::getInstance()->playBackgroundMusic(bgmName, true);

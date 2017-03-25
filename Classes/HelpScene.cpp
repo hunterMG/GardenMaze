@@ -49,7 +49,7 @@ bool Help::init()
 	auto menu = Menu::create(closeItem, NULL);
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
-	displayQR();
+	//displayQR();
 	return true;
 }
 
